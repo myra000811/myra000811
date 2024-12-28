@@ -1,0 +1,25 @@
+var catImage = new Image();
+catImage.src = 'path/to/your/cat-outline.png'; // Replace with the path to your cat image
+
+// Update the Particle class
+Particle.prototype = {
+    init : function(x, y, radius) {
+        this.alive = true;
+        this.radius = radius || 10;
+        this.x = x || 0.0;
+        this.y = y || 0.0;
+        this.vx = 0.0;
+        this.vy = 0.0;
+    },
+    move : function() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.vx *= 0.92; // Adjust drag
+        this.vy *= 0.92; // Adjust drag
+        this.alive = this.radius > 0.5;
+    },
+    draw : function(ctx) {
+        // Draw the cat image instead of a circle
+        ctx.drawImage(catImage, this.x - 10, this.y - 10, 20, 20); // Center the image
+    }
+};
